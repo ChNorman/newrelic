@@ -69,34 +69,6 @@ describe 'newrelic_lwrp_test::agent_dotnetcore' do
     end
   end
 
-  context 'when on RHEL family' do
-    let(:chef_run) do
-      ChefSpec::SoloRunner.new(:log_level => LOG_LEVEL, :platform => 'redhat', :version => '7.3', :step_into => ['newrelic_agent_dotnetcore']) do |node|
-        stub_node_resources(node)
-      end.converge(described_recipe)
-    end
-
-    it 'Installs the New Relic .Net Core Agent on RHEL' do
-      expect(chef_run).to install_newrelic_agent_dotnetcore('Install')
-    end
-
-    it 'Install New Relic .NET Core Agent (yum)' do
-      expect(chef_run).to install_yum_package('newrelic-netcore20-agent')
-    end
-
-    it 'Creates yum repository for .Net Core Agent' do
-      expect(chef_run).to create_yum_repository('newrelic')
-    end
-
-    it 'Creates environmental Variable for Agent Home Directory' do
-      expect(chef_run).to create_coreclr_newrelic_home('CORECLR_NEWRELIC_HOME')
-    end
-
-    it 'Create newrelic.config file' do
-      expect(chef_run).to render_file('/usr/local/newrelic-netcore20-agent/newrelic.config').with_content('0000ffff0000ffff0000ffff0000ffff0000ffff')
-    end
-  end
-
   context 'when on CentOS' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(:log_level => LOG_LEVEL, :platform => 'centos', :version => '6.8', :step_into => ['newrelic_agent_dotnetcore']) do |node|
@@ -124,32 +96,3 @@ describe 'newrelic_lwrp_test::agent_dotnetcore' do
       expect(chef_run).to render_file('/usr/local/newrelic-netcore20-agent/newrelic.config').with_content('0000ffff0000ffff0000ffff0000ffff0000ffff')
     end
   end
-
-  context 'when on Amazon Linux' do
-    let(:chef_run) do
-      ChefSpec::SoloRunner.new(:log_level => LOG_LEVEL, :platform => 'amazon', :version => '2018.03', :step_into => ['newrelic_agent_dotnetcore']) do |node|
-        stub_node_resources(node)
-      end.converge(described_recipe)
-    end
-
-    it 'Installs the New Relic .Net Core Agent on RHEL' do
-      expect(chef_run).to install_newrelic_agent_dotnetcore('Install')
-    end
-
-    it 'Install New Relic .NET Core Agent (yum)' do
-      expect(chef_run).to install_yum_package('newrelic-netcore20-agent')
-    end
-
-    it 'Creates yum repository for .Net Core Agent' do
-      expect(chef_run).to create_yum_repository('newrelic')
-    end
-
-    it 'Creates environmental Variable for Agent Home Directory' do
-      expect(chef_run).to create_coreclr_newrelic_home('CORECLR_NEWRELIC_HOME')
-    end
-
-    it 'Create newrelic.config file' do
-      expect(chef_run).to render_file('/usr/local/newrelic-netcore20-agent/newrelic.config').with_content('0000ffff0000ffff0000ffff0000ffff0000ffff')
-    end
-  end
-end
