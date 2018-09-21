@@ -2,8 +2,6 @@
 # use chef-current-precise to install the pre-release
 addons:
   apt:
-    sources:
-      - stable
     packages:
       - chefdk
 
