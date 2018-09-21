@@ -71,7 +71,7 @@ describe 'newrelic_lwrp_test::agent_dotnetcore' do
 
   context 'when on RHEL family' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(:log_level => LOG_LEVEL, :platform => 'redhat', :version => '7', :step_into => ['newrelic_agent_dotnetcore']) do |node|
+      ChefSpec::SoloRunner.new(:log_level => LOG_LEVEL, :platform => 'redhat', :version => '7.3', :step_into => ['newrelic_agent_dotnetcore']) do |node|
         stub_node_resources(node)
       end.converge(described_recipe)
     end
@@ -127,7 +127,7 @@ describe 'newrelic_lwrp_test::agent_dotnetcore' do
 
   context 'when on Amazon Linux' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(:log_level => LOG_LEVEL, :platform => 'amazon', :version => '2018', :step_into => ['newrelic_agent_dotnetcore']) do |node|
+      ChefSpec::SoloRunner.new(:log_level => LOG_LEVEL, :platform => 'amazon', :version => '2018.03', :step_into => ['newrelic_agent_dotnetcore']) do |node|
         stub_node_resources(node)
       end.converge(described_recipe)
     end

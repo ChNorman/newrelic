@@ -78,17 +78,17 @@ def install_newrelic_dotnetcore_windows
     not_if { ::File.exist?('#{new_resource.config_dir}\NewRelic.Profiler.dll') }
   end
 
-  windows_env 'CORECLR_NEWRELIC_HOME' do
+  env 'CORECLR_NEWRELIC_HOME' do
     action :create
     value new_resource.config_dir
   end
 
-  windows_env 'CORECLR_PROFILER' do
+  env 'CORECLR_PROFILER' do
     action :create
     value '{36032161-FFC0-4B61-B559-F6C5D41BAE5A}'
   end
 
-  windows_env 'CORECLR_PROFILER_PATH' do
+  env 'CORECLR_PROFILER_PATH' do
     action :create
     value '%CORECLR_NEWRELIC_HOME%\NewRelic.Profiler.dll'
   end

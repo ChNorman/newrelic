@@ -46,7 +46,7 @@ if defined?(ChefSpec)
   end
 
   def create_windows_envriomental_variable(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(:windows_env, :create, resource_name)
+    ChefSpec::Matchers::ResourceMatcher.new(:env, :create, resource_name)
   end
 
   def install_newrelic_agent_python(resource_name)
