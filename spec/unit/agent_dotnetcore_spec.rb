@@ -96,3 +96,4 @@ describe 'newrelic_lwrp_test::agent_dotnetcore' do
       expect(chef_run).to render_file('/usr/local/newrelic-netcore20-agent/newrelic.config').with_content('0000ffff0000ffff0000ffff0000ffff0000ffff')
     end
   end
+end
