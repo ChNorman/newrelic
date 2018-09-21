@@ -39,7 +39,7 @@ describe 'newrelic_lwrp_test::agent_dotnetcore' do
 
   context 'when on Debian Family' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(:log_level => LOG_LEVEL, :platform => 'ubuntu', :version => '18.04', :step_into => ['newrelic_agent_dotnetcore']) do |node|
+      ChefSpec::SoloRunner.new(:log_level => LOG_LEVEL, :platform => 'ubuntu', :version => '16.04', :step_into => ['newrelic_agent_dotnetcore']) do |node|
         stub_node_resources(node)
       end.converge(described_recipe)
     end
